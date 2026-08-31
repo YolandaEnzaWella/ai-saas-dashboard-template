@@ -1,0 +1,65 @@
+/**
+ * Default locale dictionary (NFR 4.8 — i18n ready).
+ * Add `src/i18n/<locale>.ts` with the same shape and register it in `index.ts`.
+ */
+export const en = {
+  common: {
+    search: "Search",
+    searchPlaceholder: "Search agents, prompts, conversations…",
+    save: "Save changes",
+    cancel: "Cancel",
+    create: "Create",
+    delete: "Delete",
+    edit: "Edit",
+    duplicate: "Duplicate",
+    export: "Export",
+    filter: "Filter",
+    viewAll: "View all",
+    loading: "Loading…",
+    noResults: "No results found",
+    all: "All",
+    back: "Back",
+    next: "Next",
+    confirm: "Confirm",
+  },
+  nav: {
+    workspace: "Workspace",
+    aiStudio: "AI Studio",
+    usageBilling: "Usage & Billing",
+    administration: "Administration",
+    dashboard: "Dashboard",
+    chat: "AI Chat",
+    agents: "AI Agents",
+    prompts: "Prompts",
+    usage: "Usage",
+    billing: "Billing",
+    subscription: "Subscription",
+    apiKeys: "API Keys",
+    team: "Team Members",
+    roles: "Roles & Permissions",
+    analytics: "Analytics",
+    notifications: "Notifications",
+    integrations: "Integrations",
+    settings: "Settings",
+  },
+  dashboard: {
+    title: "Dashboard",
+    subtitle: "Your AI workspace at a glance.",
+    tokensUsed: "Tokens used",
+    activeAgents: "Active agents",
+    conversations: "Conversations",
+    currentSpend: "Current spend",
+    usageTrend: "Usage trend",
+    recentActivity: "Recent activity",
+    agentStatus: "Agent status",
+  },
+  states: {
+    emptyTitle: "Nothing here yet",
+    emptyBody: "Once data starts flowing in, it will show up here.",
+    errorTitle: "Something went wrong",
+    errorBody: "We could not load this section. Try again in a moment.",
+    retry: "Try again",
+  },
+} as const;
+
+export type Dictionary = typeof en;

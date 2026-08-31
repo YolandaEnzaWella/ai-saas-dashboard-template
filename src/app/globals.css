@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------
+   Design tokens — edit this block to re-skin the entire template.
+   Values are HSL channels (hue saturation lightness) without hsl().
+------------------------------------------------------------------- */
+@layer base {
+  :root {
+    --background: 220 33% 98%;
+    --foreground: 224 48% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 224 48% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 48% 12%;
+
+    --primary: 258 89% 62%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 25% 95%;
+    --secondary-foreground: 224 38% 22%;
+
+    --muted: 220 22% 95%;
+    --muted-foreground: 220 12% 46%;
+
+    --accent: 190 92% 42%;
+    --accent-foreground: 0 0% 100%;
+
+    --success: 152 62% 40%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 36 94% 50%;
+    --warning-foreground: 30 60% 12%;
+
+    --danger: 356 76% 54%;
+    --danger-foreground: 0 0% 100%;
+
+    --border: 220 18% 89%;
+    --input: 220 18% 89%;
+    --ring: 258 89% 62%;
+
+    --chart-1: 258 89% 62%;
+    --chart-2: 190 92% 42%;
+    --chart-3: 152 62% 45%;
+    --chart-4: 36 94% 55%;
+    --chart-5: 330 74% 60%;
+
+    --radius: 0.75rem;
+
+    /* Swap for next/font or a webfont link if the buyer prefers a brand face. */
+    --font-sans: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+  }
+
+  .dark {
+    --background: 226 40% 7%;
+    --foreground: 220 30% 96%;
+
+    --card: 226 34% 11%;
+    --card-foreground: 220 30% 96%;
+
+    --popover: 226 34% 11%;
+    --popover-foreground: 220 30% 96%;
+
+    --primary: 258 90% 68%;
+    --primary-foreground: 226 45% 8%;
+
+    --secondary: 226 26% 17%;
+    --secondary-foreground: 220 24% 92%;
+
+    --muted: 226 26% 16%;
+    --muted-foreground: 220 14% 64%;
+
+    --accent: 190 92% 50%;
+    --accent-foreground: 226 45% 8%;
+
+    --success: 152 58% 46%;
+    --success-foreground: 226 45% 8%;
+
+    --warning: 36 94% 58%;
+    --warning-foreground: 30 60% 10%;
+
+    --danger: 356 78% 62%;
+    --danger-foreground: 226 45% 8%;
+
+    --border: 226 22% 20%;
+    --input: 226 22% 20%;
+    --ring: 258 90% 68%;
+
+    --chart-1: 258 90% 70%;
+    --chart-2: 190 92% 52%;
+    --chart-3: 152 60% 52%;
+    --chart-4: 36 94% 60%;
+    --chart-5: 330 78% 68%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Respect users who ask for less motion (NFR 4.3). */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--border));
+    border-radius: 9999px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Markdown rendered inside AI chat responses (FR-CHT-05). */
+  .prose-chat :where(p):not(:last-child) {
+    @apply mb-3;
+  }
+  .prose-chat :where(ul, ol) {
+    @apply mb-3 space-y-1 pl-5;
+  }
+  .prose-chat :where(ul) {
+    @apply list-disc;
+  }
+  .prose-chat :where(ol) {
+    @apply list-decimal;
+  }
+  .prose-chat :where(h1, h2, h3) {
+    @apply mb-2 font-semibold;
+  }
+  .prose-chat :where(code) {
+    @apply rounded bg-muted px-1.5 py-0.5 font-mono text-[0.85em];
+  }
+  .prose-chat :where(table) {
+    @apply mb-3 w-full border-collapse text-sm;
+  }
+  .prose-chat :where(th, td) {
+    @apply border border-border px-3 py-1.5 text-left;
+  }
+  .prose-chat :where(th) {
+    @apply bg-muted font-medium;
+  }
+  .prose-chat :where(a) {
+    @apply text-primary underline underline-offset-2;
+  }
+}

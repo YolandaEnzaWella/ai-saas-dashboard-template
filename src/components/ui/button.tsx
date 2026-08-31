@@ -15,7 +15,7 @@ const variants = {
 
 const sizes = {
   sm: "h-8 px-3 text-xs gap-1.5",
-  md: "h-9.5 px-4 text-sm gap-2",
+  md: "h-9 px-4 text-sm gap-2",
   lg: "h-11 px-5 text-sm gap-2",
   icon: "h-9 w-9 p-0",
 } as const;
@@ -36,7 +36,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         "disabled:pointer-events-none disabled:opacity-50",
         variants[variant],
         sizes[size],
-        size === "md" && "h-9",
         className,
       )}
       {...props}

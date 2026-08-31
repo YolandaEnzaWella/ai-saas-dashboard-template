@@ -16,7 +16,7 @@ export function Topbar({ onOpenMobileNav }: { onOpenMobileNav: () => void }) {
         aria-label="Open navigation"
         className="inline-flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground lg:hidden"
       >
-        <Menu className="h-4.5 w-4.5" aria-hidden />
+        <Menu className="h-[18px] w-[18px]" aria-hidden />
       </button>
 
       <GlobalSearch />

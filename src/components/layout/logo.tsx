@@ -4,7 +4,7 @@ export function Logo({ className, showWordmark = true }: { className?: string; s
   return (
     <span className={cn("flex items-center gap-2.5", className)}>
       <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-primary-foreground shadow-sm">
-        <svg viewBox="0 0 24 24" className="h-4.5 w-4.5" fill="none" aria-hidden>
+        <svg viewBox="0 0 24 24" className="h-[18px] w-[18px]" fill="none" aria-hidden>
           <path
             d="M12 3.5 4.5 8v8L12 20.5 19.5 16V8L12 3.5Z"
             stroke="currentColor"

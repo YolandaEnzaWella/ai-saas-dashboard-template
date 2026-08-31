@@ -191,11 +191,10 @@ A workflow is included at `.github/workflows/deploy-pages.yml`. It lints,
 typechecks, exports the site with the repository name as the base path, and
 publishes it.
 
-1. Push to `main`.
-2. In the repository: **Settings → Pages → Build and deployment → Source:
+1. In the repository: **Settings → Pages → Build and deployment → Source:
    GitHub Actions**.
-3. The workflow runs on every push to `main`, or on demand from the **Actions**
-   tab via *Run workflow*.
+2. Push to a branch listed under `on.push.branches` in the workflow, or trigger
+   it manually from the **Actions** tab via *Run workflow*.
 
 The site then lives at `https://<owner>.github.io/<repo>/`.
 

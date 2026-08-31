@@ -7,7 +7,10 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    # Trim this list to whichever branch you publish from.
+    branches:
+      - main
+      - claude/project-setup-docs-fua7xw
   workflow_dispatch:
 
 # Allow the workflow to publish to Pages.

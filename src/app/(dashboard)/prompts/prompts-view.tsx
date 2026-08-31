@@ -15,7 +15,8 @@ import { Tabs } from "@/components/ui/tabs";
 import { useToast } from "@/components/ui/toast";
 import { promptCategories, prompts as seedPrompts } from "@/data/prompts";
 import type { Prompt } from "@/lib/types";
-import { formatNumber, formatRelativeTime } from "@/lib/utils";
+import { formatNumber } from "@/lib/utils";
+import { RelativeTime } from "@/components/ui/relative-time";
 
 export function PromptsView() {
   const { toast } = useToast();
@@ -210,7 +211,7 @@ export function PromptsView() {
                   <Star className="h-3 w-3 fill-warning text-warning" aria-hidden />
                   {prompt.rating > 0 ? prompt.rating.toFixed(1) : "—"}
                 </span>
-                <span>{formatRelativeTime(prompt.updatedAt)}</span>
+                <span><RelativeTime value={prompt.updatedAt} /></span>
               </div>
             </Card>
           ))}

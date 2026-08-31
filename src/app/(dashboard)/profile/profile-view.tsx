@@ -13,7 +13,8 @@ import { Switch } from "@/components/ui/switch";
 import { Tabs } from "@/components/ui/tabs";
 import { useToast } from "@/components/ui/toast";
 import { currentUser } from "@/data/users";
-import { formatDate, formatRelativeTime } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
+import { RelativeTime } from "@/components/ui/relative-time";
 
 const sessions = [
   { id: "ses_1", device: "MacBook Pro · Chrome", location: "Jakarta, ID", ip: "103.28.14.7", at: "2026-08-31T09:12:00Z", current: true, icon: Monitor },
@@ -239,7 +240,7 @@ export function ProfileView() {
                           )}
                         </p>
                         <p className="mt-0.5 text-xs text-muted-foreground">
-                          {session.location} · {session.ip} · {formatRelativeTime(session.at)}
+                          {session.location} · {session.ip} · <RelativeTime value={session.at} />
                         </p>
                       </div>
                       {!session.current && (

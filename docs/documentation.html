@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nexus AI — Documentation</title>
+<style>
+  :root {
+    --bg: #f7f8fb; --fg: #12172b; --muted: #616b85; --card: #ffffff;
+    --border: #e2e5ee; --primary: #6d3ff0; --code-bg: #f0f1f6; --accent: #0aa5c9;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0b0e1a; --fg: #eef1f8; --muted: #99a2ba; --card: #131728;
+      --border: #262c42; --primary: #9b7bff; --code-bg: #1a2036; --accent: #22c3e6;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 15px/1.65 "Inter", -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .layout { display: flex; min-height: 100vh; }
+  nav {
+    width: 260px; flex-shrink: 0; border-right: 1px solid var(--border);
+    padding: 28px 20px; position: sticky; top: 0; height: 100vh; overflow-y: auto;
+    background: var(--card);
+  }
+  nav .brand { font-weight: 700; font-size: 16px; margin-bottom: 4px; }
+  nav .version { color: var(--muted); font-size: 12px; margin-bottom: 24px; }
+  nav p.group {
+    font-size: 11px; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--muted); margin: 22px 0 8px; font-weight: 600;
+  }
+  nav a {
+    display: block; padding: 5px 10px; border-radius: 6px; color: var(--fg);
+    text-decoration: none; font-size: 13.5px;
+  }
+  nav a:hover { background: var(--code-bg); color: var(--primary); }
+  main { flex: 1; min-width: 0; padding: 44px 40px 90px; max-width: 900px; }
+  h1 { font-size: 32px; margin: 0 0 8px; letter-spacing: -.02em; }
+  h2 {
+    font-size: 22px; margin: 48px 0 12px; padding-top: 14px;
+    border-top: 1px solid var(--border); letter-spacing: -.01em;
+  }
+  h3 { font-size: 16px; margin: 26px 0 8px; }
+  p, li { color: var(--fg); }
+  .lead { color: var(--muted); font-size: 16px; margin-bottom: 28px; }
+  code {
+    background: var(--code-bg); padding: 2px 6px; border-radius: 4px;
+    font-family: "JetBrains Mono", ui-monospace, Consolas, monospace; font-size: 13px;
+  }
+  pre {
+    background: var(--code-bg); padding: 16px 18px; border-radius: 10px;
+    overflow-x: auto; border: 1px solid var(--border); font-size: 13px; line-height: 1.6;
+  }
+  pre code { background: none; padding: 0; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--border); }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+  .note {
+    border-left: 3px solid var(--primary); background: var(--card);
+    padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 18px 0;
+  }
+  .note.warn { border-left-color: #e8a33d; }
+  .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+  .card strong { display: block; margin-bottom: 4px; }
+  .card span { color: var(--muted); font-size: 13px; }
+  .swatch { display: inline-block; width: 14px; height: 14px; border-radius: 4px; vertical-align: -2px; margin-right: 6px; }
+  footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--muted); font-size: 13px; }
+  @media (max-width: 860px) {
+    .layout { flex-direction: column; }
+    nav { width: 100%; height: auto; position: static; border-right: 0; border-bottom: 1px solid var(--border); }
+    main { padding: 28px 20px 60px; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav>
+  <div class="brand">Nexus AI</div>
+  <div class="version">Documentation · v1.0.0</div>
+
+  <p class="group">Getting started</p>
+  <a href="#requirements">Requirements</a>
+  <a href="#install">Installation</a>
+  <a href="#scripts">Scripts</a>
+  <a href="#demo">Demo credentials</a>
+
+  <p class="group">Structure</p>
+  <a href="#folders">Folder structure</a>
+  <a href="#pages">Page list</a>
+  <a href="#patterns">Page pattern</a>
+
+  <p class="group">Customization</p>
+  <a href="#theming">Colors &amp; theming</a>
+  <a href="#dark">Dark mode</a>
+  <a href="#navigation">Navigation</a>
+  <a href="#components">Components</a>
+  <a href="#charts">Charts</a>
+  <a href="#i18n">Internationalization</a>
+
+  <p class="group">Going live</p>
+  <a href="#data">Connecting an API</a>
+  <a href="#auth">Authentication</a>
+  <a href="#payments">Payments</a>
+  <a href="#deploy">Deployment</a>
+
+  <p class="group">Reference</p>
+  <a href="#browsers">Browser support</a>
+  <a href="#faq">FAQ</a>
+  <a href="#credits">Credits</a>
+</nav>
+
+<main>
+  <h1>Nexus AI — AI + SaaS Admin Dashboard</h1>
+  <p class="lead">
+    An admin dashboard template for AI SaaS products: agents, chat, prompts, token usage,
+    usage-based billing, team management and integrations. Built with Next.js 14 (App Router),
+    TypeScript, Tailwind CSS and Recharts.
+  </p>
+
+  <div class="note">
+    <strong>This is a front-end template.</strong> It simulates an AI SaaS product with realistic
+    mock data — there is no live backend. Every dataset lives in <code>src/data/</code> and is typed
+    against <code>src/lib/types.ts</code>, so connecting your API means changing one layer.
+  </div>
+
+  <h2 id="requirements">Requirements</h2>
+  <table>
+    <tr><th>Tool</th><th>Version</th></tr>
+    <tr><td>Node.js</td><td>18.17 or newer (20 LTS recommended)</td></tr>
+    <tr><td>npm</td><td>9 or newer (yarn and pnpm also work)</td></tr>
+    <tr><td>Browser</td><td>Latest Chrome, Firefox, Edge or Safari</td></tr>
+  </table>
+
+  <h2 id="install">Installation</h2>
+  <p>Unzip the package, then from the project root:</p>
+  <pre><code>npm install
+npm run dev</code></pre>
+  <p>Open <code>http://localhost:3000</code>. The root path redirects to <code>/dashboard</code>.</p>
+
+  <h2 id="scripts">Scripts</h2>
+  <table>
+    <tr><th>Command</th><th>Description</th></tr>
+    <tr><td><code>npm run dev</code></td><td>Development server with hot reload</td></tr>
+    <tr><td><code>npm run build</code></td><td>Optimized production build</td></tr>
+    <tr><td><code>npm run start</code></td><td>Serve the production build</td></tr>
+    <tr><td><code>npm run lint</code></td><td>ESLint using <code>next/core-web-vitals</code></td></tr>
+    <tr><td><code>npm run typecheck</code></td><td>TypeScript check, no output</td></tr>
+  </table>
+
+  <h2 id="demo">Demo credentials</h2>
+  <p>
+    The login form is pre-filled with <code>amara@nexus.ai</code>. Any password of 8+ characters
+    passes validation, and the flow continues to the two-factor screen, which accepts the code
+    <code>824193</code>. All of this is client-side simulation — see
+    <a href="#auth">Authentication</a> for wiring up a real provider.
+  </p>
+
+  <h2 id="folders">Folder structure</h2>
+  <pre><code>src/
+├── app/
+│   ├── (auth)/            Auth route group — split-screen layout
+│   ├── (dashboard)/       Dashboard route group — sidebar + topbar shell
+│   ├── globals.css        Design tokens + base styles
+│   ├── layout.tsx         Root layout, theme and toast providers
+│   ├── not-found.tsx      404 page
+│   └── error.tsx          500 / error boundary
+├── components/
+│   ├── ui/                Primitives: button, card, table, modal, toast…
+│   ├── layout/            Sidebar, topbar, command palette, theme toggle
+│   └── charts/            Recharts wrappers, heatmap, sparkline
+├── data/                  Typed mock data, one file per domain
+├── i18n/                  String dictionary
+└── lib/
+    ├── types.ts           Domain entities
+    ├── utils.ts           Formatters and helpers
+    └── markdown.tsx       Markdown renderer for AI chat responses</code></pre>
+
+  <h2 id="pages">Page list</h2>
+  <table>
+    <tr><th>Module</th><th>Routes</th></tr>
+    <tr><td>Authentication</td><td><code>/login</code>, <code>/register</code>, <code>/forgot-password</code>, <code>/two-factor</code></td></tr>
+    <tr><td>Dashboard</td><td><code>/dashboard</code>, <code>/dashboard/compact</code></td></tr>
+    <tr><td>AI Chat</td><td><code>/chat</code>, <code>/chat/[id]</code></td></tr>
+    <tr><td>AI Agents</td><td><code>/agents</code>, <code>/agents/new</code>, <code>/agents/[id]</code>, <code>/agents/[id]/edit</code></td></tr>
+    <tr><td>Prompts</td><td><code>/prompts</code>, <code>/prompts/new</code>, <code>/prompts/[id]</code></td></tr>
+    <tr><td>Usage</td><td><code>/usage</code>, <code>/usage/breakdown</code>, <code>/usage/reports</code></td></tr>
+    <tr><td>Billing</td><td><code>/billing</code>, <code>/billing/invoices</code>, <code>/billing/invoices/[id]</code>, <code>/billing/payment-methods</code></td></tr>
+    <tr><td>Subscription</td><td><code>/subscription</code>, <code>/subscription/current</code></td></tr>
+    <tr><td>API Keys</td><td><code>/api-keys</code></td></tr>
+    <tr><td>Team</td><td><code>/team</code>, <code>/team/invite</code>, <code>/team/[id]</code></td></tr>
+    <tr><td>Roles</td><td><code>/roles</code>, <code>/roles/matrix</code></td></tr>
+    <tr><td>Analytics</td><td><code>/analytics</code>, <code>/analytics/agents</code>, <code>/analytics/users</code></td></tr>
+    <tr><td>Notifications</td><td><code>/notifications</code>, <code>/notifications/settings</code></td></tr>
+    <tr><td>Integrations</td><td><code>/integrations</code>, <code>/integrations/[slug]</code></td></tr>
+    <tr><td>Account</td><td><code>/settings</code>, <code>/profile</code></td></tr>
+    <tr><td>Errors</td><td>404, 500</td></tr>
+  </table>
+
+  <h2 id="patterns">Page pattern</h2>
+  <p>Every module follows the same two-file shape:</p>
+  <pre><code>// page.tsx — server component: metadata only
+import type { Metadata } from "next";
+import { AgentsView } from "./agents-view";
+
+export const metadata: Metadata = { title: "AI Agents" };
+
+export default function AgentsPage() {
+  return &lt;AgentsView /&gt;;
+}</code></pre>
+  <pre><code>// agents-view.tsx — client component: all interactive state
+"use client";
+export function AgentsView() { /* filters, modals, handlers */ }</code></pre>
+  <div class="note warn">
+    <strong>Server components cannot pass functions to client components.</strong> If you convert a
+    view back to a server component, remove function props such as <code>valueFormatter</code> on
+    the chart wrappers, or the production build will fail during static generation.
+  </div>
+  <p>To add a module: copy a folder, add its route to <code>src/components/layout/nav-config.ts</code>, and add a data file in <code>src/data/</code>.</p>
+
+  <h2 id="theming">Colors &amp; theming</h2>
+  <p>
+    Every color in the template is an HSL triple stored in a CSS custom property. Change the token
+    and the whole dashboard — including charts — follows. Edit <code>src/app/globals.css</code>:
+  </p>
+  <pre><code>:root {
+  --background: 220 33% 98%;
+  --foreground: 224 48% 12%;
+  --primary: 258 89% 62%;     /* your brand color */
+  --accent: 190 92% 42%;
+  --success: 152 62% 40%;
+  --warning: 36 94% 50%;
+  --danger: 356 76% 54%;
+  --radius: 0.75rem;          /* corner rounding, template-wide */
+
+  --chart-1: 258 89% 62%;     /* chart series 1–5 */
+  --chart-2: 190 92% 42%;
+}</code></pre>
+  <div class="grid">
+    <div class="card"><strong><span class="swatch" style="background:#6d3ff0"></span>--primary</strong><span>Buttons, active nav, links, chart series 1</span></div>
+    <div class="card"><strong><span class="swatch" style="background:#0aa5c9"></span>--accent</strong><span>Secondary highlights and chart series 2</span></div>
+    <div class="card"><strong><span class="swatch" style="background:#28a06a"></span>--success</strong><span>Paid, connected, healthy states</span></div>
+    <div class="card"><strong><span class="swatch" style="background:#f5a623"></span>--warning</strong><span>Quota alerts, pending states</span></div>
+    <div class="card"><strong><span class="swatch" style="background:#e0384c"></span>--danger</strong><span>Errors, overdue invoices, destructive actions</span></div>
+  </div>
+  <p style="margin-top:16px">
+    Fonts are set with <code>--font-sans</code> and <code>--font-mono</code> in the same block.
+    To use a Google font, add <code>next/font</code> in <code>src/app/layout.tsx</code> and point
+    these variables at the generated CSS variable.
+  </p>
+
+  <h2 id="dark">Dark mode</h2>
+  <p>
+    Dark mode uses Tailwind's <code>class</code> strategy via
+    <a href="https://github.com/pacocoursey/next-themes">next-themes</a>. The provider is mounted in
+    <code>src/app/layout.tsx</code> with <code>defaultTheme="system"</code>. Override any token in the
+    <code>.dark</code> block of <code>globals.css</code>. The theme switcher lives in the topbar and
+    in <code>/settings → Appearance</code>.
+  </p>
+  <div class="note">
+    Charts read the same CSS variables, so they re-render correctly on theme change with no
+    JavaScript. If you hard-code a hex value in a chart, it will not follow the theme.
+  </div>
+
+  <h2 id="navigation">Navigation</h2>
+  <p>The sidebar is generated from a single config file:</p>
+  <pre><code>// src/components/layout/nav-config.ts
+export const navigation: NavGroup[] = [
+  {
+    label: "Workspace",
+    items: [
+      { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+      { label: "AI Chat", href: "/chat", icon: MessagesSquare },
+    ],
+  },
+];</code></pre>
+  <p>
+    The command palette (<code>⌘K</code> / <code>Ctrl+K</code>) reads the same list, so a new entry is
+    searchable immediately. Icons come from <a href="https://lucide.dev">Lucide</a>.
+  </p>
+
+  <h2 id="components">Components</h2>
+  <table>
+    <tr><th>Component</th><th>Import</th></tr>
+    <tr><td>Button</td><td><code>@/components/ui/button</code></td></tr>
+    <tr><td>Card set</td><td><code>@/components/ui/card</code></td></tr>
+    <tr><td>Badge + <code>statusTone</code> map</td><td><code>@/components/ui/badge</code></td></tr>
+    <tr><td>Input, Textarea, Select, Field</td><td><code>@/components/ui/input</code></td></tr>
+    <tr><td>Switch, Checkbox</td><td><code>@/components/ui/switch</code></td></tr>
+    <tr><td>Table primitives</td><td><code>@/components/ui/table</code></td></tr>
+    <tr><td>Modal</td><td><code>@/components/ui/modal</code></td></tr>
+    <tr><td>Dropdown</td><td><code>@/components/ui/dropdown</code></td></tr>
+    <tr><td>Tabs, SegmentedControl</td><td><code>@/components/ui/tabs</code></td></tr>
+    <tr><td>Toast (<code>useToast</code>)</td><td><code>@/components/ui/toast</code></td></tr>
+    <tr><td>Skeleton set</td><td><code>@/components/ui/skeleton</code></td></tr>
+    <tr><td>EmptyState, ErrorState</td><td><code>@/components/ui/empty-state</code>, <code>error-state</code></td></tr>
+    <tr><td>PageHeader, StatCard</td><td><code>@/components/ui/page-header</code>, <code>stat-card</code></td></tr>
+  </table>
+  <p>Toasts are triggered from any client component:</p>
+  <pre><code>const { toast } = useToast();
+toast({ title: "Agent created", description: "Support Triage is live.", tone: "success" });</code></pre>
+
+  <h2 id="charts">Charts</h2>
+  <p>
+    Charts are thin wrappers over <a href="https://recharts.org">Recharts</a> in
+    <code>src/components/charts/</code>:
+  </p>
+  <table>
+    <tr><th>Component</th><th>Use for</th></tr>
+    <tr><td><code>UsageAreaChart</code></td><td>Input vs output token trend</td></tr>
+    <tr><td><code>SimpleBarChart</code></td><td>Vertical columns or horizontal bars</td></tr>
+    <tr><td><code>SimpleLineChart</code></td><td>Multi-series trends</td></tr>
+    <tr><td><code>DonutChart</code></td><td>Share of total with a center label</td></tr>
+    <tr><td><code>Heatmap</code></td><td>Day × hour activity (CSS grid, no library)</td></tr>
+    <tr><td><code>Sparkline</code></td><td>Inline micro-trends</td></tr>
+  </table>
+  <pre><code>&lt;SimpleBarChart
+  data={rows}
+  xKey="label"
+  layout="horizontal"
+  bars={[{ key: "tokens", name: "Tokens" }]}
+  valueFormatter={(v) =&gt; `${formatCompact(v)} tokens`}
+/&gt;</code></pre>
+  <p>
+    Recharts needs a fixed parent height — <code>ChartFrame</code> handles that. Shared axis, grid,
+    tooltip and legend styles live in <code>chart-kit.tsx</code>.
+  </p>
+
+  <h2 id="i18n">Internationalization</h2>
+  <p>
+    UI strings are collected in <code>src/i18n/en.ts</code>. Add a locale file with the same shape and
+    register it:
+  </p>
+  <pre><code>// src/i18n/index.ts
+import { id } from "./id";
+const dictionaries = { en, id };
+export const locales = ["en", "id"] as const;</code></pre>
+  <p>
+    Because <code>Dictionary</code> is derived from the English file, TypeScript flags any missing
+    key in a translation. For route-based locales, wrap the app in a <code>[locale]</code> segment
+    or drop in <code>next-intl</code>.
+  </p>
+
+  <h2 id="data">Connecting an API</h2>
+  <p>
+    Each file in <code>src/data/</code> exports plain typed objects. Replace an export with a fetch and
+    await it in the page:
+  </p>
+  <pre><code>// src/data/agents.ts
+export async function getAgents(): Promise&lt;Agent[]&gt; {
+  const res = await fetch(`${process.env.API_URL}/agents`, {
+    headers: { Authorization: `Bearer ${process.env.API_TOKEN}` },
+    next: { revalidate: 60 },
+  });
+  if (!res.ok) throw new Error("Failed to load agents");
+  return res.json();
+}
+
+// src/app/(dashboard)/agents/page.tsx
+export default async function AgentsPage() {
+  const agents = await getAgents();
+  return &lt;AgentsView agents={agents} /&gt;;
+}</code></pre>
+  <p>
+    A thrown error is caught by <code>error.tsx</code>; the <code>loading.tsx</code> skeleton shows while
+    the request is in flight. Both already exist for the main modules.
+  </p>
+  <div class="note">
+    The entity shapes in <code>src/lib/types.ts</code> mirror common LLM API and Stripe-style objects
+    (<code>Invoice</code>, <code>Subscription</code>, <code>PaymentMethod</code>), so the mapping is
+    usually one-to-one.
+  </div>
+
+  <h2 id="auth">Authentication</h2>
+  <p>
+    The auth pages validate input and simulate the flow client-side. To make them real, add a
+    provider such as NextAuth/Auth.js, Clerk or Supabase Auth, then:
+  </p>
+  <ol>
+    <li>Replace the <code>setTimeout</code> in <code>login-form.tsx</code> with your sign-in call.</li>
+    <li>Add a <code>middleware.ts</code> that redirects unauthenticated requests to <code>/login</code>.</li>
+    <li>Swap <code>currentUser</code> in <code>src/data/users.ts</code> for the session user.</li>
+    <li>Gate navigation entries against the role permissions in <code>src/data/roles.ts</code>.</li>
+  </ol>
+
+  <h2 id="payments">Payments</h2>
+  <p>
+    Billing screens render Stripe-shaped objects. Card fields on
+    <code>/billing/payment-methods</code> are a demo form — replace them with Stripe Elements or your
+    provider's SDK so card data never reaches your server. Plan changes on
+    <code>/subscription</code> should call your provider's subscription-update endpoint from a route
+    handler.
+  </p>
+  <div class="note warn">
+    Never place a live secret key in client code. Keep provider secrets in server-side environment
+    variables and call them from route handlers or server actions.
+  </div>
+
+  <h2 id="deploy">Deployment</h2>
+  <pre><code>npm run build
+npm run start</code></pre>
+  <p>
+    The template works on any Node host — Vercel, Netlify, Render, Fly.io, Docker or a plain VPS.
+    Because all data is static, the current build prerenders every route. Once you add live
+    fetches, mark those routes dynamic or set a revalidate interval.
+  </p>
+
+  <h2 id="browsers">Browser support</h2>
+  <p>
+    Latest two versions of Chrome, Firefox, Edge and Safari. Layouts are verified at 360px, 480px,
+    768px, 1280px and 1920px. The template honors <code>prefers-reduced-motion</code> and passes
+    ESLint and TypeScript with zero warnings.
+  </p>
+
+  <h2 id="faq">FAQ</h2>
+  <h3>Can I use this in a commercial product?</h3>
+  <p>Yes, within the terms of your marketplace license. All bundled dependencies are MIT or ISC licensed.</p>
+
+  <h3>Is there a plain HTML or React (Vite) version?</h3>
+  <p>
+    This package is the Next.js App Router build. The <code>src/components</code> tree is
+    framework-agnostic React apart from <code>next/link</code> and <code>next/navigation</code>
+    imports, so porting to Vite mostly means swapping those for your router.
+  </p>
+
+  <h3>Why is a form not saving?</h3>
+  <p>
+    Forms validate and show toasts but do not persist — there is no backend. See
+    <a href="#data">Connecting an API</a>.
+  </p>
+
+  <h3>How do I remove a module?</h3>
+  <p>
+    Delete its folder under <code>src/app/(dashboard)/</code>, remove its entry from
+    <code>nav-config.ts</code>, and delete the matching file in <code>src/data/</code>.
+  </p>
+
+  <h3>The dashboard widgets are in a strange order.</h3>
+  <p>
+    Widget order is saved per browser in <code>localStorage</code> under
+    <code>nexus:dashboard-widgets</code>. Clear that key to reset.
+  </p>
+
+  <h2 id="credits">Credits</h2>
+  <table>
+    <tr><th>Package</th><th>License</th></tr>
+    <tr><td>Next.js</td><td>MIT</td></tr>
+    <tr><td>React</td><td>MIT</td></tr>
+    <tr><td>Tailwind CSS</td><td>MIT</td></tr>
+    <tr><td>Recharts</td><td>MIT</td></tr>
+    <tr><td>Lucide icons</td><td>ISC</td></tr>
+    <tr><td>next-themes</td><td>MIT</td></tr>
+    <tr><td>clsx / tailwind-merge</td><td>MIT</td></tr>
+  </table>
+  <p>
+    No stock photography is bundled — avatars are generated from initials, so there are no image
+    licensing obligations.
+  </p>
+
+  <footer>
+    Nexus AI — AI + SaaS Admin Dashboard Template · v1.0.0<br />
+    Thank you for purchasing. If something is unclear, the source is commented throughout —
+    start with <code>src/app/globals.css</code> and <code>src/components/layout/nav-config.ts</code>.
+  </footer>
+</main>
+</div>
+</body>
+</html>

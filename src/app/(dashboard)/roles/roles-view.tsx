@@ -15,7 +15,7 @@ import { useToast } from "@/components/ui/toast";
 import { permissionAudit, permissionModules, roles as seedRoles } from "@/data/roles";
 import { users } from "@/data/users";
 import type { Role } from "@/lib/types";
-import { formatRelativeTime } from "@/lib/utils";
+import { RelativeTime } from "@/components/ui/relative-time";
 
 export function RolesView() {
   const { toast } = useToast();
@@ -171,7 +171,7 @@ export function RolesView() {
                     <span className="text-muted-foreground">{entry.action}</span>{" "}
                     <span className="font-medium">{entry.target}</span>
                   </p>
-                  <p className="mt-0.5 text-xs text-muted-foreground">{formatRelativeTime(entry.at)}</p>
+                  <p className="mt-0.5 text-xs text-muted-foreground"><RelativeTime value={entry.at} /></p>
                 </div>
               </li>
             ))}

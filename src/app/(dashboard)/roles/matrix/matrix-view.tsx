@@ -205,7 +205,7 @@ export function MatrixView() {
                               checked={permission[action]}
                               disabled={locked}
                               onChange={() => toggle(permission.module, action)}
-                              label={`${action} ${permission.module}`}
+                              ariaLabel={`${action} ${permission.module}`}
                               id={`${roleId}-${permission.module}-${action}`}
                             />
                           </span>

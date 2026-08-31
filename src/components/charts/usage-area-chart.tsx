@@ -13,6 +13,14 @@ import type { UsagePoint } from "@/lib/types";
 import { formatCompact } from "@/lib/utils";
 import { ChartFrame, ChartLegend, ChartTooltip, axisProps, chartColors, gridProps } from "./chart-kit";
 
+/** Turn "2026-08-02" into "Aug 2"; leave "W3" / "Aug" labels untouched. */
+function formatTick(value: string | number) {
+  if (typeof value !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return String(value);
+  return new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric", timeZone: "UTC" }).format(
+    new Date(`${value}T00:00:00Z`),
+  );
+}
+
 export function UsageAreaChart({
   data,
   height = 300,
@@ -38,10 +46,10 @@ export function UsageAreaChart({
               </linearGradient>
             </defs>
             <CartesianGrid {...gridProps} />
-            <XAxis dataKey="date" {...axisProps} minTickGap={24} />
+            <XAxis dataKey="date" {...axisProps} minTickGap={24} tickFormatter={formatTick} />
             <YAxis {...axisProps} tickFormatter={(value: number) => formatCompact(value)} width={48} />
             <Tooltip
-              content={<ChartTooltip formatter={(value) => `${formatCompact(value)} tokens`} />}
+              content={<ChartTooltip formatter={(value) => `${formatCompact(value)} tokens`} labelFormatter={formatTick} />}
               cursor={{ stroke: "hsl(var(--border))" }}
             />
             <Area

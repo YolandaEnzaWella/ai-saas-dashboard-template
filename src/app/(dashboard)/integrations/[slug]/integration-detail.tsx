@@ -15,7 +15,8 @@ import { Tabs } from "@/components/ui/tabs";
 import { TBody, TD, TH, THead, TR, Table, TableWrapper } from "@/components/ui/table";
 import { useToast } from "@/components/ui/toast";
 import type { Integration } from "@/lib/types";
-import { formatDate, formatRelativeTime } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
+import { RelativeTime } from "@/components/ui/relative-time";
 
 const availableEvents = [
   { id: "agent.run.completed", label: "Agent run completed" },
@@ -207,7 +208,7 @@ export function IntegrationDetail({ integration }: { integration: Integration })
                             {event.status}
                           </Badge>
                         </TD>
-                        <TD className="text-sm text-muted-foreground">{formatRelativeTime(event.at)}</TD>
+                        <TD className="text-sm text-muted-foreground"><RelativeTime value={event.at} /></TD>
                         <TD className="text-right">
                           <Button
                             variant="ghost"

@@ -27,8 +27,9 @@ import { Markdown } from "@/lib/markdown";
 import { agentModels } from "@/data/agents";
 import { conversations as seedConversations } from "@/data/conversations";
 import type { Conversation, Message } from "@/lib/types";
-import { cn, estimateTokens, formatRelativeTime } from "@/lib/utils";
+import { cn, estimateTokens } from "@/lib/utils";
 import { currentUser } from "@/data/users";
+import { RelativeTime } from "@/components/ui/relative-time";
 
 const CANNED_REPLY = `Good question — here is how I would approach it.
 
@@ -219,7 +220,7 @@ export function ChatWorkspace({ conversationId }: { conversationId?: string }) {
                     </span>
                     <span className="mt-1 flex items-center justify-between text-[11px] text-muted-foreground">
                       {thread.agentName}
-                      <span>{formatRelativeTime(thread.updatedAt)}</span>
+                      <span><RelativeTime value={thread.updatedAt} /></span>
                     </span>
                   </button>
                 </li>
@@ -329,7 +330,7 @@ export function ChatWorkspace({ conversationId }: { conversationId?: string }) {
                             message.role === "user" && "justify-end",
                           )}
                         >
-                          <span>{formatRelativeTime(message.createdAt)}</span>
+                          <span><RelativeTime value={message.createdAt} /></span>
                           {showTokens && <span>· {message.tokenCount} tokens</span>}
                           {message.role === "assistant" && (
                             <>

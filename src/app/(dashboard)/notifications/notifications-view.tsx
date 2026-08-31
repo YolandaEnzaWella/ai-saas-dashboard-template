@@ -24,7 +24,8 @@ import { Tabs } from "@/components/ui/tabs";
 import { useToast } from "@/components/ui/toast";
 import { notifications as seed } from "@/data/notifications";
 import type { Notification } from "@/lib/types";
-import { cn, formatRelativeTime } from "@/lib/utils";
+import { cn } from "@/lib/utils";
+import { RelativeTime } from "@/components/ui/relative-time";
 
 const typeIcon = { system: Server, billing: CreditCard, team: Users, agent: Bot } as const;
 const typeTone = {
@@ -164,7 +165,7 @@ export function NotificationsView() {
                       </div>
                       <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{item.message}</p>
                       <div className="mt-2 flex flex-wrap items-center gap-3 text-[11px] text-muted-foreground">
-                        <span>{formatRelativeTime(item.at)}</span>
+                        <span><RelativeTime value={item.at} /></span>
                         {item.href && (
                           <Link href={item.href} className="font-medium text-primary hover:underline">
                             View details

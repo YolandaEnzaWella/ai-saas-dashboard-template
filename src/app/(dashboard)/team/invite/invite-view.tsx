@@ -11,7 +11,7 @@ import { PageHeader } from "@/components/ui/page-header";
 import { useToast } from "@/components/ui/toast";
 import { roles } from "@/data/roles";
 import { users } from "@/data/users";
-import { formatRelativeTime } from "@/lib/utils";
+import { RelativeTime } from "@/components/ui/relative-time";
 
 interface Row {
   id: number;
@@ -207,7 +207,7 @@ export function InviteView() {
                       <div className="min-w-0">
                         <p className="truncate text-sm font-medium">{user.email}</p>
                         <p className="text-xs text-muted-foreground">
-                          Invited {formatRelativeTime(user.joinedAt)}
+                          Invited <RelativeTime value={user.joinedAt} />
                         </p>
                       </div>
                       <Badge tone="warning">{user.role}</Badge>

@@ -487,8 +487,11 @@ export function AgentForm({ agent }: { agent?: Agent }) {
             <Card>
               <CardContent className="flex items-start gap-3 py-4 text-xs text-muted-foreground">
                 <Bot className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden />
-                Start from a template — Support Triage, Data Extractor and Code Reviewer are
-                available as presets in <code className="font-mono">src/data/agents.ts</code>.
+                <p className="min-w-0 leading-relaxed">
+                  Start from a template — Support Triage, Data Extractor and Code Reviewer are
+                  available as presets in{" "}
+                  <code className="rounded bg-secondary px-1 py-0.5 font-mono">src/data/agents.ts</code>.
+                </p>
               </CardContent>
             </Card>
           )}

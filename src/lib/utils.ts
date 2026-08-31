@@ -46,7 +46,9 @@ export function formatDate(input: string | Date, style: "short" | "long" = "shor
  */
 export function formatRelativeTime(input: string | Date) {
   const date = typeof input === "string" ? new Date(input) : input;
-  const seconds = Math.round((date.getTime() - Date.now()) / 1000);
+  // The bundled mock data uses fixed dates that may sit slightly ahead of the
+  // viewer's clock. Clamp to the past so timestamps never read "in 3 hours".
+  const seconds = Math.min(0, Math.round((date.getTime() - Date.now()) / 1000));
   const units: [Intl.RelativeTimeFormatUnit, number][] = [
     ["year", 60 * 60 * 24 * 365],
     ["month", 60 * 60 * 24 * 30],

@@ -47,12 +47,16 @@ export function Checkbox({
   checked,
   onChange,
   label,
+  ariaLabel,
   disabled,
   id,
 }: {
   checked: boolean;
   onChange: (next: boolean) => void;
+  /** Visible text rendered next to the box. */
   label?: string;
+  /** Accessible name for a checkbox with no visible label, e.g. a grid cell. */
+  ariaLabel?: string;
   disabled?: boolean;
   id?: string;
 }) {
@@ -63,6 +67,7 @@ export function Checkbox({
         type="checkbox"
         checked={checked}
         disabled={disabled}
+        aria-label={ariaLabel ?? (label ? undefined : "Toggle")}
         onChange={(event) => onChange(event.target.checked)}
         className="h-4 w-4 cursor-pointer rounded border-input accent-[hsl(var(--primary))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
       />

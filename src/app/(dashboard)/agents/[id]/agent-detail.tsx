@@ -28,7 +28,8 @@ import { useToast } from "@/components/ui/toast";
 import { SimpleLineChart } from "@/components/charts/simple-charts";
 import { modelName } from "@/data/agents";
 import type { Agent } from "@/lib/types";
-import { cn, formatCompact, formatDate, formatNumber, formatRelativeTime } from "@/lib/utils";
+import { cn, formatCompact, formatDate, formatNumber } from "@/lib/utils";
+import { RelativeTime } from "@/components/ui/relative-time";
 
 const stepTone = {
   trigger: "border-accent/40 bg-accent/5",
@@ -156,7 +157,7 @@ export function AgentDetail({ agent }: { agent: Agent }) {
                   { label: "Category", value: agent.category },
                   { label: "Owner", value: agent.owner },
                   { label: "Created", value: formatDate(agent.createdAt) },
-                  { label: "Last updated", value: formatRelativeTime(agent.updatedAt) },
+                  { label: "Last updated", value: <RelativeTime value={agent.updatedAt} /> },
                   { label: "Current version", value: agent.versions[0]?.version ?? "—" },
                 ].map((row) => (
                   <div key={row.label} className="flex items-center justify-between gap-3 border-b border-border pb-3 last:border-0">
@@ -239,7 +240,7 @@ export function AgentDetail({ agent }: { agent: Agent }) {
                           </TD>
                           <TD className="text-right text-sm">{run.durationMs} ms</TD>
                           <TD className="text-right text-sm">{formatNumber(run.tokens)}</TD>
-                          <TD className="text-sm text-muted-foreground">{formatRelativeTime(run.startedAt)}</TD>
+                          <TD className="text-sm text-muted-foreground"><RelativeTime value={run.startedAt} /></TD>
                         </TR>
                       ))}
                     </TBody>

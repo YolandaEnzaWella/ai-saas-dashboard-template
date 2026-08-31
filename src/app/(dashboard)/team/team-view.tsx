@@ -20,7 +20,8 @@ import { useToast } from "@/components/ui/toast";
 import { roles } from "@/data/roles";
 import { team, users as seedUsers } from "@/data/users";
 import type { RoleName, User } from "@/lib/types";
-import { formatDate, formatRelativeTime } from "@/lib/utils";
+import { formatDate } from "@/lib/utils";
+import { RelativeTime } from "@/components/ui/relative-time";
 
 export function TeamView() {
   const { toast } = useToast();
@@ -200,7 +201,7 @@ export function TeamView() {
                           {user.status === "pending" ? "Pending invite" : user.status}
                         </Badge>
                       </TD>
-                      <TD className="text-sm text-muted-foreground">{formatRelativeTime(user.lastActive)}</TD>
+                      <TD className="text-sm text-muted-foreground"><RelativeTime value={user.lastActive} /></TD>
                       <TD className="text-sm text-muted-foreground">{formatDate(user.joinedAt)}</TD>
                       <TD>
                         <Dropdown

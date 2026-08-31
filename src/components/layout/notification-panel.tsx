@@ -6,7 +6,8 @@ import { Bell, Bot, CheckCheck, CreditCard, Server, Trash2, Users } from "lucide
 import { Dropdown } from "@/components/ui/dropdown";
 import { notifications as seed } from "@/data/notifications";
 import type { Notification } from "@/lib/types";
-import { cn, formatRelativeTime } from "@/lib/utils";
+import { cn } from "@/lib/utils";
+import { RelativeTime } from "@/components/ui/relative-time";
 
 const typeIcon = {
   system: Server,
@@ -96,7 +97,7 @@ export function NotificationPanel() {
                     <p className="truncate text-xs font-medium">{item.title}</p>
                     <p className="mt-0.5 line-clamp-2 text-xs text-muted-foreground">{item.message}</p>
                     <p className="mt-1 text-[11px] text-muted-foreground">
-                      {formatRelativeTime(item.at)}
+                      <RelativeTime value={item.at} />
                     </p>
                   </div>
                   <div className="flex shrink-0 flex-col items-center gap-1.5 opacity-0 transition-opacity group-hover:opacity-100 focus-within:opacity-100">

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Bot, CreditCard, KeyRound, Sparkles, Users } from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
 import { recentActivity } from "@/data/users";
-import { formatRelativeTime } from "@/lib/utils";
+import { RelativeTime } from "@/components/ui/relative-time";
 
 const typeIcon = {
   agent: Bot,
@@ -29,7 +29,7 @@ export function ActivityFeed({ limit = 8 }: { limit?: number }) {
               </p>
               <p className="mt-0.5 flex items-center gap-1.5 text-xs text-muted-foreground">
                 <Icon className="h-3 w-3" aria-hidden />
-                {formatRelativeTime(item.at)}
+                <RelativeTime value={item.at} />
               </p>
             </div>
           </li>

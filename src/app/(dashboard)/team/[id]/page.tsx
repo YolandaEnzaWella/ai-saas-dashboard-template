@@ -13,7 +13,8 @@ import { agents } from "@/data/agents";
 import { getRole, roles } from "@/data/roles";
 import { usageByMember, usageDaily } from "@/data/usage";
 import { recentActivity, users } from "@/data/users";
-import { formatCompact, formatCurrency, formatDate, formatNumber, formatRelativeTime } from "@/lib/utils";
+import { formatCompact, formatCurrency, formatDate, formatNumber } from "@/lib/utils";
+import { RelativeTime } from "@/components/ui/relative-time";
 
 export function generateStaticParams() {
   return users.map((user) => ({ id: user.id }));
@@ -66,7 +67,7 @@ export default function MemberDetailPage({ params }: { params: { id: string } })
               {[
                 { label: "Workspace", value: user.team },
                 { label: "Joined", value: formatDate(user.joinedAt) },
-                { label: "Last active", value: formatRelativeTime(user.lastActive) },
+                { label: "Last active", value: <RelativeTime value={user.lastActive} /> },
                 { label: "Agents owned", value: String(ownedAgents.length) },
               ].map((row) => (
                 <div key={row.label} className="flex justify-between gap-3">
@@ -192,7 +193,7 @@ export default function MemberDetailPage({ params }: { params: { id: string } })
                         <span className="text-muted-foreground">{item.action}</span>{" "}
                         <span className="font-medium">{item.target}</span>
                       </p>
-                      <p className="mt-0.5 text-xs text-muted-foreground">{formatRelativeTime(item.at)}</p>
+                      <p className="mt-0.5 text-xs text-muted-foreground"><RelativeTime value={item.at} /></p>
                     </div>
                   </li>
                 ))}

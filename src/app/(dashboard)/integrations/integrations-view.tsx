@@ -15,7 +15,7 @@ import { Tabs } from "@/components/ui/tabs";
 import { useToast } from "@/components/ui/toast";
 import { integrationCategories, integrations as seed } from "@/data/integrations";
 import type { Integration } from "@/lib/types";
-import { formatRelativeTime } from "@/lib/utils";
+import { RelativeTime } from "@/components/ui/relative-time";
 
 export function IntegrationsView() {
   const { toast } = useToast();
@@ -148,7 +148,7 @@ export function IntegrationsView() {
                   <Badge tone="outline">{integration.category}</Badge>
                   {integration.connected && integration.connectedAt && (
                     <span className="text-[11px] text-muted-foreground">
-                      since {formatRelativeTime(integration.connectedAt)}
+                      since <RelativeTime value={integration.connectedAt} />
                     </span>
                   )}
                 </div>

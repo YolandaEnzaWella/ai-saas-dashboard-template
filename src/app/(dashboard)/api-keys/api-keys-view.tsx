@@ -28,7 +28,8 @@ import { TBody, TD, TH, THead, TR, Table, TableWrapper } from "@/components/ui/t
 import { useToast } from "@/components/ui/toast";
 import { apiKeyLogs, apiKeys as seedKeys, apiScopes } from "@/data/api-keys";
 import type { ApiKey } from "@/lib/types";
-import { cn, formatDate, formatNumber, formatRelativeTime } from "@/lib/utils";
+import { cn, formatDate, formatNumber } from "@/lib/utils";
+import { RelativeTime } from "@/components/ui/relative-time";
 
 export function ApiKeysView() {
   const { toast } = useToast();
@@ -202,7 +203,7 @@ export function ApiKeysView() {
                           <TD className="text-sm text-muted-foreground">{key.rateLimit}</TD>
                           <TD className="text-right text-sm">{formatNumber(key.requests30d)}</TD>
                           <TD className="text-sm text-muted-foreground">
-                            {key.lastUsedAt ? formatRelativeTime(key.lastUsedAt) : "Never"}
+                            {key.lastUsedAt ? <RelativeTime value={key.lastUsedAt} /> : "Never"}
                           </TD>
                           <TD>
                             <Badge tone={statusTone[key.status]} dot className="capitalize">
@@ -289,7 +290,7 @@ export function ApiKeysView() {
                     const ok = log.statusCode < 400;
                     return (
                       <TR key={log.id}>
-                        <TD className="text-sm text-muted-foreground">{formatRelativeTime(log.at)}</TD>
+                        <TD className="text-sm text-muted-foreground"><RelativeTime value={log.at} /></TD>
                         <TD className="text-sm font-medium">{keyName}</TD>
                         <TD className="font-mono text-xs">{log.endpoint}</TD>
                         <TD>

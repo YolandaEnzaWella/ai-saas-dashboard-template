@@ -1,8 +1,12 @@
 # Publishes the template to GitHub Pages as a static site.
 #
-# One-time setup in the repository: Settings → Pages → Build and deployment →
-# Source: "GitHub Actions". The site is then served from
+# The build job enables Pages itself (configure-pages `enablement: true`), so no
+# manual repository setting is required. The site is served from
 # https://<owner>.github.io/<repo>/
+#
+# If enablement fails, the repository is private on a plan without Pages: either
+# make it public, or enable Pages by hand under Settings → Pages → Build and
+# deployment → Source: "GitHub Actions".
 name: Deploy to GitHub Pages
 
 on:
@@ -55,6 +59,11 @@ jobs:
         run: touch out/.nojekyll
 
       - uses: actions/configure-pages@v5
+        with:
+          # Turn Pages on via the API so no manual repository setting is needed.
+          # Requires a public repository, or a plan that includes Pages for
+          # private repositories.
+          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:

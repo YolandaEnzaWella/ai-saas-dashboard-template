@@ -188,13 +188,15 @@ NEXT_OUTPUT=export NEXT_BASE_PATH=/your-repo-name npm run build:static
 ### GitHub Pages
 
 A workflow is included at `.github/workflows/deploy-pages.yml`. It lints,
-typechecks, exports the site with the repository name as the base path, and
-publishes it.
+typechecks, exports the site with the repository name as the base path, enables
+Pages via the API, and publishes — no manual repository setting needed.
 
-1. In the repository: **Settings → Pages → Build and deployment → Source:
-   GitHub Actions**.
-2. Push to a branch listed under `on.push.branches` in the workflow, or trigger
-   it manually from the **Actions** tab via *Run workflow*.
+Push to a branch listed under `on.push.branches` in the workflow, or trigger it
+from the **Actions** tab via *Run workflow*.
+
+If the enablement step fails, the repository is private on a plan without Pages.
+Either make it public, or turn Pages on by hand under **Settings → Pages → Build
+and deployment → Source: GitHub Actions**.
 
 The site then lives at `https://<owner>.github.io/<repo>/`.
 

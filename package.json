@@ -2,13 +2,14 @@
   "name": "nexus-ai-dashboard",
   "version": "1.0.0",
   "private": true,
-  "description": "Nexus AI — AI + SaaS Admin Dashboard Template (Next.js 14, TypeScript, Tailwind CSS)",
+  "description": "Nexus AI \u2014 AI + SaaS Admin Dashboard Template (Next.js 14, TypeScript, Tailwind CSS)",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "build:static": "NEXT_OUTPUT=export next build"
   },
   "dependencies": {
     "clsx": "2.1.1",

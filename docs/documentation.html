@@ -401,13 +401,35 @@ export default async function AgentsPage() {
   </div>
 
   <h2 id="deploy">Deployment</h2>
+  <h3>Node host</h3>
   <pre><code>npm run build
 npm run start</code></pre>
   <p>
-    The template works on any Node host — Vercel, Netlify, Render, Fly.io, Docker or a plain VPS.
-    Because all data is static, the current build prerenders every route. Once you add live
-    fetches, mark those routes dynamic or set a revalidate interval.
+    Works on Vercel, Netlify, Render, Fly.io, Docker or a plain VPS. Because all data is static,
+    the build prerenders every route. Once you add live fetches, mark those routes dynamic or set
+    a revalidate interval.
   </p>
+
+  <h3>Static host</h3>
+  <pre><code>npm run build:static     # writes ./out</code></pre>
+  <p>
+    Emits plain HTML, CSS and JS in <code>out/</code> for S3, Cloudflare Pages, Netlify Drop or any
+    CDN. If the site is not served from the domain root, set the prefix so routes and assets
+    resolve:
+  </p>
+  <pre><code>NEXT_OUTPUT=export NEXT_BASE_PATH=/your-repo-name npm run build:static</code></pre>
+
+  <h3>GitHub Pages</h3>
+  <p>
+    <code>.github/workflows/deploy-pages.yml</code> lints, typechecks, exports the site with the
+    repository name as the base path, and publishes it. Push to <code>main</code>, then set
+    <strong>Settings → Pages → Build and deployment → Source: GitHub Actions</strong>. The site is
+    served from <code>https://&lt;owner&gt;.github.io/&lt;repo&gt;/</code>.
+  </p>
+  <div class="note warn">
+    GitHub Pages serves public repositories only, unless you are on a paid plan. The deployment is
+    fully static — there is no server — which suits this template since it has no backend.
+  </div>
 
   <h2 id="browsers">Browser support</h2>
   <p>

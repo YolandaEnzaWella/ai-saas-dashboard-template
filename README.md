@@ -25,7 +25,8 @@ Other scripts:
 | Command | What it does |
 | --- | --- |
 | `npm run dev` | Start the dev server |
-| `npm run build` | Production build |
+| `npm run build` | Production build (Node host) |
+| `npm run build:static` | Static export to `out/` (any static host) |
 | `npm run start` | Serve the production build |
 | `npm run lint` | ESLint (next/core-web-vitals) |
 | `npm run typecheck` | TypeScript, no emit |
@@ -158,6 +159,49 @@ The types in `src/lib/types.ts` already mirror common LLM and Stripe-style objec
 register it in `src/i18n/index.ts`, and the `Dictionary` type will flag any missing keys.
 
 ---
+
+## Deployment
+
+Every route in this template is prerendered, so it runs either as a normal Next.js
+app or as a pile of static files.
+
+### Node host (Vercel, Netlify, Render, Docker, VPS)
+
+```bash
+npm run build
+npm run start
+```
+
+### Static host (GitHub Pages, S3, Cloudflare Pages, any CDN)
+
+```bash
+npm run build:static      # writes ./out
+```
+
+Serve `out/` as-is. If the site is **not** at the domain root — a GitHub Pages
+project site lives at `/<repo>/` — set the prefix so routes and assets resolve:
+
+```bash
+NEXT_OUTPUT=export NEXT_BASE_PATH=/your-repo-name npm run build:static
+```
+
+### GitHub Pages
+
+A workflow is included at `.github/workflows/deploy-pages.yml`. It lints,
+typechecks, exports the site with the repository name as the base path, and
+publishes it.
+
+1. Push to `main`.
+2. In the repository: **Settings → Pages → Build and deployment → Source:
+   GitHub Actions**.
+3. The workflow runs on every push to `main`, or on demand from the **Actions**
+   tab via *Run workflow*.
+
+The site then lives at `https://<owner>.github.io/<repo>/`.
+
+Two things to know: GitHub Pages only serves public repositories unless you are
+on a paid plan, and the deploy is entirely static — there is no server, which is
+fine here because the template has no backend.
 
 ## Browser support
 

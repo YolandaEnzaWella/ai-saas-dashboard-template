@@ -1,13 +1,13 @@
 # Publishes the template to GitHub Pages as a static site.
 #
-# The build job switches Pages on itself via configure-pages `enablement: true`.
+# One-time setup, done once by a repository admin in the browser:
+#   Settings -> Pages -> Build and deployment -> Source: "GitHub Actions"
 #
-# That works for public repositories on any plan. GitHub Pages is available for
-# private repositories only on a paid plan; on the free plan a private
-# repository must be made public first, otherwise this step fails with
-# "Resource not accessible by integration".
+# The workflow cannot do this itself: creating a Pages site needs
+# repository-admin rights that GITHUB_TOKEN cannot hold. Pages also has to be
+# available for the repository - public on any plan, private only on a paid one.
 #
-# The site is served from https://<owner>.github.io/<repo>/
+# The site is then served from https://<owner>.github.io/<repo>/
 name: Deploy to GitHub Pages
 
 on:
@@ -59,13 +59,11 @@ jobs:
         # Without this, Jekyll would strip the _next/ directory.
         run: touch out/.nojekyll
 
+      # `enablement: true` is deliberately not used: creating a Pages site needs
+      # repository-admin rights, which GITHUB_TOKEN cannot be granted, so it
+      # fails with "Resource not accessible by integration" on public and
+      # private repositories alike. Pages must be switched on once by hand.
       - uses: actions/configure-pages@v5
-        with:
-          # Creates the Pages site through the API if it does not exist yet, so
-          # no manual repository setting is needed. This needs Pages to be
-          # available for the repository: public repositories on any plan,
-          # private ones only on a paid plan.
-          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:

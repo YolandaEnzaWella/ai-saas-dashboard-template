@@ -191,15 +191,17 @@ A workflow is included at `.github/workflows/deploy-pages.yml`. It lints,
 typechecks, exports the site with the repository name as the base path, and
 publishes it.
 
-The workflow switches Pages on itself (`configure-pages` with
-`enablement: true`), so just push to a branch listed under `on.push.branches`,
-or run it from the **Actions** tab.
+1. Enable Pages once in the browser: **Settings → Pages → Build and deployment →
+   Source: GitHub Actions**. The workflow cannot do this for you — creating a
+   Pages site needs repository-admin rights that `GITHUB_TOKEN` cannot be
+   granted, so `configure-pages` with `enablement: true` fails with
+   `Resource not accessible by integration`.
+2. Push to a branch listed under `on.push.branches`, or run the workflow from
+   the **Actions** tab.
 
-That works for **public** repositories on any plan. Pages is available for
-**private** repositories only on a paid plan — on the free plan the step fails
-with `Resource not accessible by integration`, and the repository has to be made
-public first. For a repository that must stay private, Vercel, Netlify and
-Cloudflare Pages all deploy this template on their free tiers.
+Pages is free for public repositories; for private ones it needs a paid plan.
+If the repository must stay private, Vercel, Netlify and Cloudflare Pages all
+deploy this template on their free tiers.
 
 The site then lives at `https://<owner>.github.io/<repo>/`.
 

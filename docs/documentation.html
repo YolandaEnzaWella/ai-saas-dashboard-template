@@ -422,10 +422,12 @@ npm run start</code></pre>
   <h3>GitHub Pages</h3>
   <p>
     <code>.github/workflows/deploy-pages.yml</code> lints, typechecks, exports the site with the
-    repository name as the base path, switches Pages on through the API, and publishes it. Push to
-    a branch listed under <code>on.push.branches</code>, or run it from the
-    <strong>Actions</strong> tab. The site is served from
-    <code>https://&lt;owner&gt;.github.io/&lt;repo&gt;/</code>.
+    repository name as the base path, and publishes it. Enable Pages once in the browser under
+    <strong>Settings → Pages → Build and deployment → Source: GitHub Actions</strong> — the
+    workflow cannot do this itself, because creating a Pages site needs repository-admin rights
+    that <code>GITHUB_TOKEN</code> cannot be granted. Then push to a branch listed under
+    <code>on.push.branches</code>, or run it from the <strong>Actions</strong> tab. The site is
+    served from <code>https://&lt;owner&gt;.github.io/&lt;repo&gt;/</code>.
   </p>
   <div class="note warn">
     GitHub Pages is available for private repositories only on a paid plan — a private repository

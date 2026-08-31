@@ -422,14 +422,18 @@ npm run start</code></pre>
   <h3>GitHub Pages</h3>
   <p>
     <code>.github/workflows/deploy-pages.yml</code> lints, typechecks, exports the site with the
-    repository name as the base path, enables Pages via the API, and publishes it — no manual
-    repository setting is needed. Push to a branch listed under <code>on.push.branches</code>, or
-    run it from the <strong>Actions</strong> tab. The site is served from
-    <code>https://&lt;owner&gt;.github.io/&lt;repo&gt;/</code>.
+    repository name as the base path, and publishes it. A repository admin enables Pages once under
+    <strong>Settings → Pages → Build and deployment → Source: GitHub Actions</strong> — the
+    workflow cannot do this itself, because the default <code>GITHUB_TOKEN</code> may deploy to an
+    existing Pages site but not create one. Then push to a branch listed under
+    <code>on.push.branches</code>, or run it from the <strong>Actions</strong> tab. The site is
+    served from <code>https://&lt;owner&gt;.github.io/&lt;repo&gt;/</code>.
   </p>
   <div class="note warn">
-    GitHub Pages serves public repositories only, unless you are on a paid plan. The deployment is
-    fully static — there is no server — which suits this template since it has no backend.
+    GitHub Pages is available for private repositories only on a paid plan — a private repository
+    on the free plan must be made public first. For a private repository, Vercel, Netlify and
+    Cloudflare Pages all deploy this template on their free tiers. The deployment is fully static —
+    there is no server — which suits this template since it has no backend.
   </div>
 
   <h2 id="browsers">Browser support</h2>
